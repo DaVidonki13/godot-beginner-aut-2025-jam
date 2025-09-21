@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqd5qc6b732gq"
-path="res://.godot/imported/wall_atlas.png-65dde8d1b46c504119341cdcd78f3104.ctex"
+uid="uid://bvahuyoktqn1a"
+path="res://.godot/imported/Background A.png-8ac98d1c9437cb03fd4750b653bb93fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/wall_atlas.png"
-dest_files=["res://.godot/imported/wall_atlas.png-65dde8d1b46c504119341cdcd78f3104.ctex"]
+source_file="res://assets/map/Background/Background A.png"
+dest_files=["res://.godot/imported/Background A.png-8ac98d1c9437cb03fd4750b653bb93fd.ctex"]
 
 [params]
 
