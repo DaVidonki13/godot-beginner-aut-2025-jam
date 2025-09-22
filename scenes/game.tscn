@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://bcns26lxifh7s"]
+[gd_scene load_steps=8 format=4 uid="uid://bcns26lxifh7s"]
 
+[ext_resource type="Script" uid="uid://bkn2vdmlb0j0b" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://crao745tf6o4p" path="res://assets/map/Enviroment.png" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://8b20aricsm6o" path="res://assets/map/Background/brown_back.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://04o60qfqg0y7" path="res://player/pacman.tscn" id="3_lnu2h"]
@@ -798,7 +799,10 @@ physics_layer_0/collision_layer = 4096
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+
 [node name="game" type="Node2D"]
+script = ExtResource("1_lbhrr")
 
 [node name="background" type="Node2D" parent="."]
 
@@ -812,7 +816,7 @@ tile_map_data = PackedByteArray("AAABAAAAAAAJAAEAAAD+/wAAAAAIAAEAAAD9/wAAAAAHAAE
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(-8, -8)
+position = Vector2(-11, -8)
 
 [node name="Camera2D" type="Camera2D" parent="pacman"]
 position = Vector2(-1, 8)
@@ -827,3 +831,20 @@ position_smoothing_enabled = true
 visible = false
 energy = 0.99
 blend_mode = 1
+
+[node name="r_area2d" type="Area2D" parent="."]
+position = Vector2(422, 24)
+collision_layer = 8
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="r_area2d"]
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="l_area2d2" type="Area2D" parent="."]
+position = Vector2(-438, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="l_area2d2"]
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[connection signal="area_entered" from="r_area2d" to="." method="_on_r_area_2d_area_entered"]
+[connection signal="area_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_area_entered"]
