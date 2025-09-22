@@ -12,9 +12,11 @@ extends CharacterBody2D
 @onready var _raycast_east: RayCast2D = %raycast_east
 @onready var _raycast_west: RayCast2D = %raycast_west
 
+@onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
+
 #movement
 var _DEFAULT_DIRECTION: Vector2 = Vector2.RIGHT
-var _SPEED: float = 50
+@export var _SPEED: float = 7000
 
 var _direction: Vector2 = _DEFAULT_DIRECTION
 var _new_direction: Vector2
@@ -30,6 +32,7 @@ var _delete_input_timer: float = 0
 
 
 func _ready() -> void:
+	_animation.play("walk")
 	_start_position = position
 	_x = position.x
 	_y = position.y
@@ -85,7 +88,10 @@ func _process(_delta: float) -> void:
 			_new_direction = Vector2.ZERO
 			_delete_input_timer = 0
 	
-	velocity = _direction * _SPEED
-	look_at(position + _direction)
+	velocity = _direction * _SPEED * _delta
+	#_animations.flip_h = _direction == Vector2.LEFT
+	#look_at(position + _direction)
+	#if _direction != Vector2:
+		
 	
 	move_and_slide()
