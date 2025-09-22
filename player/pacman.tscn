@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 
 [node name="pacman" type="CharacterBody2D"]
 collision_layer = 256
-collision_mask = 29184
+collision_mask = 0
 script = ExtResource("1_xv0j0")
 metadata/_edit_group_ = true
 

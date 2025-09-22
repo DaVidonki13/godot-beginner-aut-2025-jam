@@ -795,6 +795,7 @@ texture = ExtResource("1_uwrxv")
 
 [sub_resource type="TileSet" id="TileSet_lnu2h"]
 physics_layer_0/collision_layer = 4096
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [node name="game" type="Node2D"]
@@ -809,9 +810,9 @@ tile_map_data = PackedByteArray("AAABAAAAAAAJAAEAAAD+/wAAAAAIAAEAAAD9/wAAAAAHAAE
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(1, -8)
+position = Vector2(-8, -8)
 
 [node name="Camera2D" type="Camera2D" parent="pacman"]
 position = Vector2(-1, 8)
-zoom = Vector2(15, 15)
+zoom = Vector2(13, 13)
 position_smoothing_enabled = true
