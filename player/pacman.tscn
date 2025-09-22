@@ -1,12 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://04o60qfqg0y7"]
+[gd_scene load_steps=17 format=3 uid="uid://04o60qfqg0y7"]
 
 [ext_resource type="Script" uid="uid://1t7q43xh5bb4" path="res://player/pacman.gd" id="1_xv0j0"]
+[ext_resource type="Texture2D" uid="uid://cyq7hcscsxndg" path="res://player/WalkingCaveExplorer-Sheet.png" id="2_abmb4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kypjo"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03nhu"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfis3"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nc5r"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft0v5"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyujl"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ls7u"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(288, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il2xn"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(336, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwy52"]
+atlas = ExtResource("2_abmb4")
+region = Rect2(384, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hpfbp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kypjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03nhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfis3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nc5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft0v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyujl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ls7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il2xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwy52")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv0j0"]
 size = Vector2(16, 16)
 
-[sub_resource type="QuadMesh" id="QuadMesh_xv0j0"]
-size = Vector2(16, 16)
+[sub_resource type="Gradient" id="Gradient_abmb4"]
+offsets = PackedFloat32Array(0, 0.6872428, 1)
+colors = PackedColorArray(0.8509804, 0.19607843, 0.078431375, 1, 0.90588236, 0.6313726, 0.09803922, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kypjo"]
+gradient = SubResource("Gradient_abmb4")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.88461536, 0.1923077)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_abmb4"]
+polygon = PackedVector2Array(1, -7, -3, -7, -5, -1, -5, 8, 0, 8, 1, -1, 1, -5)
 
 [node name="pacman" type="CharacterBody2D"]
 collision_layer = 256
@@ -14,24 +98,17 @@ collision_mask = 0
 script = ExtResource("1_xv0j0")
 metadata/_edit_group_ = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.7, -1.5)
+scale = Vector2(0.5937499, 0.59374994)
+sprite_frames = SubResource("SpriteFrames_hpfbp")
+animation = &"walk"
+autoplay = "walk"
+frame = 1
+frame_progress = 0.94351405
+
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xv0j0")
-
-[node name="mesh1" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0, 1, 1)
-mesh = SubResource("QuadMesh_xv0j0")
-
-[node name="mesh2" type="MeshInstance2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(5, 5)
-scale = Vector2(0.12499999, 0.12499999)
-mesh = SubResource("QuadMesh_xv0j0")
-
-[node name="mesh3" type="MeshInstance2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(5, -5)
-scale = Vector2(0.12499999, 0.12499999)
-mesh = SubResource("QuadMesh_xv0j0")
 
 [node name="raycast_up" type="RayCast2D" parent="."]
 unique_name_in_owner = true
@@ -76,3 +153,10 @@ collision_mask = 4096
 unique_name_in_owner = true
 target_position = Vector2(0, 16)
 collision_mask = 4096
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(6, -4)
+texture = SubResource("GradientTexture2D_kypjo")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_abmb4")
