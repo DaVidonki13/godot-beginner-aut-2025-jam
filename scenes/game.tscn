@@ -923,3 +923,9 @@ position = Vector2(474, 507)
 
 [connection signal="body_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_body_entered"]
 [connection signal="body_entered" from="r_area2d" to="." method="_on_r_area_2d_body_entered"]
+
+
+[node name="sfx" type="Node" parent="."]
+
+[connection signal="area_entered" from="r_area2d" to="." method="_on_r_area_2d_area_entered"]
+[connection signal="area_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_area_entered"]

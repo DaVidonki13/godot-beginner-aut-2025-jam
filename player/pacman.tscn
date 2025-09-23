@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://04o60qfqg0y7"]
+[gd_scene load_steps=18 format=3 uid="uid://04o60qfqg0y7"]
 
 [ext_resource type="Script" uid="uid://1t7q43xh5bb4" path="res://player/pacman.gd" id="1_xv0j0"]
 [ext_resource type="Texture2D" uid="uid://cyq7hcscsxndg" path="res://player/WalkingCaveExplorer-Sheet.png" id="2_abmb4"]
+[ext_resource type="AudioStream" uid="uid://boc5xqlqndg0f" path="res://sound/sfx/footsteps-male-362053.mp3" id="3_kypjo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kypjo"]
 atlas = ExtResource("2_abmb4")
@@ -173,3 +174,12 @@ texture = SubResource("GradientTexture2D_kypjo")
 [node name="light_occluder" type="LightOccluder2D" parent="."]
 position = Vector2(1.865, 0)
 occluder = SubResource("OccluderPolygon2D_abmb4")
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="walk_sfx" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("3_kypjo")
+pitch_scale = 1.7
+bus = &"player-sfx"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
