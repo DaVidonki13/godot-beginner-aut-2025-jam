@@ -94,18 +94,30 @@ polygon = PackedVector2Array(1, -7, -3, -7, -5, -1, -5, 8, 0, 8, 1, -1, 1, -5)
 
 [node name="pacman" type="CharacterBody2D"]
 collision_layer = 256
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("1_xv0j0")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.7, -1.5)
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+top_level = true
 scale = Vector2(0.5937499, 0.59374994)
 sprite_frames = SubResource("SpriteFrames_hpfbp")
 animation = &"walk"
 autoplay = "walk"
 frame = 1
 frame_progress = 0.94351405
+centered = false
+offset = Vector2(-17.94, -18.5)
+
+[node name="camera" type="Camera2D" parent="animated_sprite"]
+position = Vector2(-1, 8)
+zoom = Vector2(10, 10)
+limit_left = -467
+limit_top = -444
+limit_right = 467
+limit_bottom = 532
+position_smoothing_enabled = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xv0j0")
@@ -136,7 +148,7 @@ collision_mask = 4104
 
 [node name="raycast_front" type="RayCast2D" parent="."]
 unique_name_in_owner = true
-target_position = Vector2(16, 0)
+target_position = Vector2(8, 0)
 collision_mask = 4104
 
 [node name="raycast_back" type="RayCast2D" parent="."]
@@ -154,9 +166,10 @@ unique_name_in_owner = true
 target_position = Vector2(0, 16)
 collision_mask = 4104
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="light" type="PointLight2D" parent="."]
 position = Vector2(6, -4)
 texture = SubResource("GradientTexture2D_kypjo")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="light_occluder" type="LightOccluder2D" parent="."]
+position = Vector2(1.865, 0)
 occluder = SubResource("OccluderPolygon2D_abmb4")
