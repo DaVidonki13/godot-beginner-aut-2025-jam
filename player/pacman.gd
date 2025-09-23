@@ -44,8 +44,10 @@ func _process(_delta: float) -> void:
 	#animation
 	if velocity == Vector2.ZERO:
 		_animated_sprite.pause() #idle
+		step_sfx = false
 	else:
 		_animated_sprite.play("walk")
+		step_sfx = true
 	
 	var _front: Vector2 = Vector2.RIGHT.rotated(rotation)
 	var _back: Vector2 = _front.rotated(PI)

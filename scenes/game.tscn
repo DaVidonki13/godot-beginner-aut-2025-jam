@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://bcns26lxifh7s"]
+[gd_scene load_steps=10 format=4 uid="uid://bcns26lxifh7s"]
 
 [ext_resource type="Script" uid="uid://bkn2vdmlb0j0b" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://crao745tf6o4p" path="res://assets/map/Enviroment.png" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://8b20aricsm6o" path="res://assets/map/Background/brown_back.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://04o60qfqg0y7" path="res://player/pacman.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bned0gfsf6ht8" path="res://enemy/enemy.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://dwjrla3c7mc5e" path="res://key/keys.tscn" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_uwrxv")
@@ -867,6 +868,7 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(20, 16)
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_lbhrr")
@@ -885,7 +887,9 @@ tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("3_lnu2h")]
 unique_name_in_owner = true
-position = Vector2(8, -8)
+position = Vector2(-331, 24)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="pacman"]
 
 [node name="light" type="DirectionalLight2D" parent="."]
 visible = false
@@ -894,6 +898,8 @@ blend_mode = 1
 
 [node name="l_area2d2" type="Area2D" parent="."]
 position = Vector2(-438, 24)
+collision_layer = 8
+collision_mask = 257
 
 [node name="collision" type="CollisionShape2D" parent="l_area2d2"]
 shape = SubResource("RectangleShape2D_lnu2h")
@@ -921,11 +927,10 @@ position = Vector2(-487, -455)
 unique_name_in_owner = true
 position = Vector2(474, 507)
 
-[connection signal="body_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_body_entered"]
-[connection signal="body_entered" from="r_area2d" to="." method="_on_r_area_2d_body_entered"]
-
-
 [node name="sfx" type="Node" parent="."]
 
-[connection signal="area_entered" from="r_area2d" to="." method="_on_r_area_2d_area_entered"]
-[connection signal="area_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_area_entered"]
+[node name="keys" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(407, 359)
+
+[connection signal="body_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_body_entered"]
+[connection signal="body_entered" from="r_area2d" to="." method="_on_r_area_2d_body_entered"]

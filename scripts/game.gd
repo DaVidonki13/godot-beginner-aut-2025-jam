@@ -3,6 +3,7 @@ class_name Game
 
 
 @onready var _pacman: CharacterBody2D = %pacman
+@onready var camera: Camera2D = $camera
 @onready var _tilemap: TileMapLayer = %tilemap
 
 @onready var _start: Marker2D = %start
@@ -37,9 +38,13 @@ func get_shortest_path(_start_point: Vector2, _finish_point: Vector2) -> PackedV
 	return _path_points
 
 
-func _on_r_area_2d_body_entered(_body: Node2D) -> void:
-	_pacman.global_position = Vector2(-414, 24)
+func _on_r_area_2d_body_entered(body: Node2D) -> void:
+	if body == _pacman:
+		_pacman.global_position = Vector2(-414, 24)
+		camera.global_position = Vector2(-414, 24)
 
 
-func _on_l_area_2d_2_body_entered(_body: Node2D) -> void:
-	_pacman.global_position = Vector2(400, 24)
+func _on_l_area_2d_2_body_entered(body: Node2D) -> void:
+	if body == _pacman:
+		_pacman.global_position = Vector2(400, 24)
+		camera.global_position = Vector2(400, 24)

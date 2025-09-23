@@ -1,21 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://bned0gfsf6ht8"]
 
 [ext_resource type="Script" uid="uid://b8cda7pqsj122" path="res://enemy/enemy.gd" id="1_ofsxj"]
+[ext_resource type="Texture2D" uid="uid://budytw2byvw47" path="res://enemy/sprites/64x64_faces_011.png" id="2_ofsxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv0j0"]
 size = Vector2(16, 16)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_abmb4"]
-polygon = PackedVector2Array(6.135, -8, -9.865, -8, -9.865, 8, 6.135, 8)
-
-[sub_resource type="QuadMesh" id="QuadMesh_2mvqj"]
-size = Vector2(16, 16)
+polygon = PackedVector2Array(3.135, -6, -1.865, -7, -6.865, -6, -4.865, 8, 1.135, 8)
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_ofsxj")
-metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.4703484e-07, 4.4703484e-07)
+scale = Vector2(0.25000003, 0.25000003)
+texture = ExtResource("2_ofsxj")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xv0j0")
@@ -67,13 +69,3 @@ collision_mask = 4104
 [node name="light_occluder" type="LightOccluder2D" parent="."]
 position = Vector2(1.865, 0)
 occluder = SubResource("OccluderPolygon2D_abmb4")
-
-[node name="sprite1" type="MeshInstance2D" parent="."]
-modulate = Color(0, 0.38431373, 1, 1)
-mesh = SubResource("QuadMesh_2mvqj")
-
-[node name="sprite2" type="MeshInstance2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(5, 0)
-scale = Vector2(0.24999997, 0.25)
-mesh = SubResource("QuadMesh_2mvqj")
