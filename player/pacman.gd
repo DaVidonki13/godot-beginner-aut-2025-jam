@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+#Variabili da modificare per audio: NON CANCELLARE: da parte di davide
+@onready var walk_sfx: AudioStreamPlayer = $sfx/walk_sfx
+var step_sfx: bool = true
 
 #raycast
 @onready var _raycast_up: RayCast2D = %raycast_up
@@ -93,5 +96,14 @@ func _process(_delta: float) -> void:
 	#look_at(position + _direction)
 	#if _direction != Vector2:
 		
-	
 	move_and_slide()
+#Funzione da modificare per audio: NON CANCELLARE: da parte di davide
+	step_sfx_update()
+	
+#Funzione da modificare per audio: NON CANCELLARE: da parte di davide
+func step_sfx_update():
+	if step_sfx:
+		if !walk_sfx.playing:
+			walk_sfx.play()
+	else:
+		walk_sfx.stop()
