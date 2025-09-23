@@ -164,10 +164,9 @@ occluder = SubResource("OccluderPolygon2D_abmb4")
 
 [node name="sfx" type="Node" parent="."]
 
-[node name="walk_sfx" type="AudioStreamPlayer" parent="sfx"]
+[node name="walk_sfx" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("3_kypjo")
-pitch_scale = 1.5
+pitch_scale = 1.7
 bus = &"player-sfx"
-parameters/looping = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
