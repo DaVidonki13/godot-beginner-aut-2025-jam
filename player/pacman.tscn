@@ -181,5 +181,3 @@ occluder = SubResource("OccluderPolygon2D_abmb4")
 stream = ExtResource("3_kypjo")
 pitch_scale = 1.7
 bus = &"player-sfx"
-
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
