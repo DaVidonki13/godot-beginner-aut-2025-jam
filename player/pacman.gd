@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #Variabili da modificare per audio: NON CANCELLARE: da parte di davide
-@onready var walk_sfx: AudioStreamPlayer = $sfx/walk_sfx
+@onready var walk_sfx: AudioStreamPlayer2D = $sfx/walk_sfx
 var step_sfx: bool = true
 
 #raycast
