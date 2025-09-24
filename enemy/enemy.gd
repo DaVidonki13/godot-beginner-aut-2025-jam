@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Enemy
 
+#TODO aggiungere jumpscare
+#TODO aggiungere rumore nemico vicino
+
 
 @export var _enemy_type: int
 
