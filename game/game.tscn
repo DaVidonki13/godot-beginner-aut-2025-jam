@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://bcns26lxifh7s"]
+[gd_scene load_steps=9 format=4 uid="uid://bcns26lxifh7s"]
 
 [ext_resource type="Script" uid="uid://bkn2vdmlb0j0b" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="Texture2D" uid="uid://8b20aricsm6o" path="res://map/background/brown_back.png" id="2_u5opy"]
 [ext_resource type="Texture2D" uid="uid://crao745tf6o4p" path="res://map/Enviroment.png" id="3_y36n6"]
 [ext_resource type="PackedScene" uid="uid://04o60qfqg0y7" path="res://player/pacman.tscn" id="4_l8g03"]
-[ext_resource type="PackedScene" uid="uid://bned0gfsf6ht8" path="res://enemy/enemy.tscn" id="5_j8tme"]
 [ext_resource type="PackedScene" uid="uid://dwjrla3c7mc5e" path="res://key/keys.tscn" id="6_3vho3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
@@ -886,10 +885,11 @@ tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAAAAAAAIAAEAAAAAAAEAAAAIAAI
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("4_l8g03")]
-unique_name_in_owner = true
-position = Vector2(-344, 24)
+position = Vector2(-9, -8)
 
-[node name="AudioListener2D" type="AudioListener2D" parent="pacman"]
+[node name="Camera2D" type="Camera2D" parent="pacman"]
+zoom = Vector2(10, 10)
+position_smoothing_enabled = true
 
 [node name="light" type="DirectionalLight2D" parent="."]
 visible = false
@@ -912,10 +912,6 @@ collision_mask = 257
 [node name="collision" type="CollisionShape2D" parent="r_area2d"]
 shape = SubResource("RectangleShape2D_lnu2h")
 
-[node name="camera" type="Camera2D" parent="."]
-position = Vector2(0, 32.015)
-zoom = Vector2(0.71, 0.71)
-
 [node name="start" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-472, -440)
@@ -927,27 +923,7 @@ position = Vector2(474, 507)
 [node name="sfx" type="Node" parent="."]
 
 [node name="keys" parent="." instance=ExtResource("6_3vho3")]
-position = Vector2(407, 359)
-
-[node name="enemy1" parent="." instance=ExtResource("5_j8tme")]
-position = Vector2(-232, -8)
-_enemy_type = 1
-
-[node name="enemy2" parent="." instance=ExtResource("5_j8tme")]
-position = Vector2(232, -264)
-_enemy_type = 2
-
-[node name="enemy3" parent="." instance=ExtResource("5_j8tme")]
-position = Vector2(232, 328)
-_enemy_type = 3
-
-[node name="enemy4" parent="." instance=ExtResource("5_j8tme")]
-position = Vector2(-248, 328)
-_enemy_type = 4
-
-[node name="enemy5" parent="." instance=ExtResource("5_j8tme")]
-position = Vector2(-248, -264)
-_enemy_type = 5
+position = Vector2(-312, 23)
 
 [connection signal="body_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_body_entered"]
 [connection signal="body_entered" from="r_area2d" to="." method="_on_r_area_2d_body_entered"]
