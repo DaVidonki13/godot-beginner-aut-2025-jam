@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
-#Variabili da modificare per audio: NON CANCELLARE: da parte di davide
-@onready var walk_sfx: AudioStreamPlayer2D = $sfx/walk_sfx
+
+#audio
+@onready var walk_sfx: AudioStreamPlayer2D = %walk_sfx
 var step_sfx: bool = true
 
 #raycast
@@ -116,17 +117,24 @@ func _process(_delta: float) -> void:
 		_animated_sprite.offset.x = -30
 	else:
 		_animated_sprite.offset.x = -18
-
+	
 	move_and_slide()
-
-	#Funzione da modificare per audio: NON CANCELLARE: da parte di davide
+	
 	step_sfx_update()
 
 
-#Funzione da modificare per audio: NON CANCELLARE: da parte di davide
 func step_sfx_update():
 	if step_sfx:
 		if !walk_sfx.playing:
 			walk_sfx.play()
 	else:
 		walk_sfx.stop()
+
+
+func get_front_direction() -> Vector2:
+	return Vector2.RIGHT.rotated(rotation)
+
+
+func _on_area_body_entered(_body: Node2D) -> void:
+	if _body is Enemy:
+		print("PACMAN DIED!")

@@ -30,8 +30,12 @@ func _ready() -> void:
 
 
 func get_shortest_path(_start_point: Vector2, _finish_point: Vector2) -> PackedVector2Array:
-	var _path_ids = _astar_grid.get_id_path(_tilemap.local_to_map(_start_point), _tilemap.local_to_map(_finish_point))
-	var _path_points = _astar_grid.get_point_path(_tilemap.local_to_map(_start_point), _tilemap.local_to_map(_finish_point))
+	_start_point = snapped(_start_point, Vector2(8, 8))
+	_finish_point = snapped(_finish_point, Vector2(8, 8))
+	_start_point = _tilemap.local_to_map(_start_point)
+	_finish_point = _tilemap.local_to_map(_finish_point)
+	var _path_ids = _astar_grid.get_id_path(_start_point, _finish_point, true)
+	var _path_points = _astar_grid.get_point_path(_start_point, _finish_point, true)
 	#DEBUG
 	#for i in _path_ids:
 		#_tilemap.set_cell(i, 0, Vector2i(22, 2))

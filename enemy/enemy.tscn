@@ -14,7 +14,9 @@ collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_ofsxj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+top_level = true
 position = Vector2(-4.4703484e-07, 4.4703484e-07)
 scale = Vector2(0.25000003, 0.25000003)
 texture = ExtResource("2_ofsxj")
@@ -26,45 +28,45 @@ shape = SubResource("RectangleShape2D_xv0j0")
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(0, -16)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_down" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(0, 16)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_left" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(-16, 0)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_right" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(16, 0)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_front" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(16, 0)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_back" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(-16, 0)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_east" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, -16)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="raycast_west" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, 16)
-collision_mask = 4104
+collision_mask = 4864
 
 [node name="light_occluder" type="LightOccluder2D" parent="."]
 position = Vector2(1.865, 0)

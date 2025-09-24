@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cravo5e4x3x6f"
-path="res://.godot/imported/Background Complete.png-815f785c46a9785842284f0be53657c3.ctex"
+uid="uid://cyq7hcscsxndg"
+path="res://.godot/imported/walking.png-34979451948e22fb775b45f803c36d74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/Background/Background Complete.png"
-dest_files=["res://.godot/imported/Background Complete.png-815f785c46a9785842284f0be53657c3.ctex"]
+source_file="res://player/walking.png"
+dest_files=["res://.godot/imported/walking.png-34979451948e22fb775b45f803c36d74.ctex"]
 
 [params]
 

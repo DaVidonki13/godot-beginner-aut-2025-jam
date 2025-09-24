@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyq7hcscsxndg"
-path="res://.godot/imported/WalkingCaveExplorer-Sheet.png-50bfdd3e632f8daf3394a7c4b2aec7cc.ctex"
+uid="uid://bvahuyoktqn1a"
+path="res://.godot/imported/Background A.png-aa409f3a6ece7828a5fd983861ad1f4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/WalkingCaveExplorer-Sheet.png"
-dest_files=["res://.godot/imported/WalkingCaveExplorer-Sheet.png-50bfdd3e632f8daf3394a7c4b2aec7cc.ctex"]
+source_file="res://map/background/Background A.png"
+dest_files=["res://.godot/imported/Background A.png-aa409f3a6ece7828a5fd983861ad1f4a.ctex"]
 
 [params]
 

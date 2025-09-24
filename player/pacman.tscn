@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://04o60qfqg0y7"]
 
 [ext_resource type="Script" uid="uid://1t7q43xh5bb4" path="res://player/pacman.gd" id="1_xv0j0"]
-[ext_resource type="Texture2D" uid="uid://cyq7hcscsxndg" path="res://player/WalkingCaveExplorer-Sheet.png" id="2_abmb4"]
-[ext_resource type="AudioStream" uid="uid://boc5xqlqndg0f" path="res://sound/sfx/footsteps-male-362053.mp3" id="3_kypjo"]
+[ext_resource type="Texture2D" uid="uid://cyq7hcscsxndg" path="res://player/walking.png" id="2_abmb4"]
+[ext_resource type="AudioStream" uid="uid://boc5xqlqndg0f" path="res://player/sfx/footsteps-male-362053.mp3" id="3_kypjo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kypjo"]
 atlas = ExtResource("2_abmb4")
@@ -127,45 +127,45 @@ shape = SubResource("RectangleShape2D_xv0j0")
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(0, -16)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_down" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(0, 16)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_left" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(-16, 0)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_right" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 top_level = true
 target_position = Vector2(16, 0)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_front" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(8, 0)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_back" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(-16, 0)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_east" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, -16)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="raycast_west" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, 16)
-collision_mask = 4104
+collision_mask = 4608
 
 [node name="light" type="PointLight2D" parent="."]
 position = Vector2(6, -4)
@@ -178,6 +178,16 @@ occluder = SubResource("OccluderPolygon2D_abmb4")
 [node name="sfx" type="Node" parent="."]
 
 [node name="walk_sfx" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
 stream = ExtResource("3_kypjo")
 pitch_scale = 1.7
 bus = &"player-sfx"
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 512
+
+[node name="collision" type="CollisionShape2D" parent="area"]
+shape = SubResource("RectangleShape2D_xv0j0")
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
