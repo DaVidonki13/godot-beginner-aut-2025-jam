@@ -1,9 +1,10 @@
 extends Node2D
 class_name Game
 
+#@onready var audio_listener_2d: AudioListener2D = $pacman/AudioListener2D
 
-@onready var _pacman: CharacterBody2D = %pacman
-@onready var camera: Camera2D = $camera
+@onready var _pacman: CharacterBody2D = $pacman
+@onready var camera: Camera2D = $pacman/Camera2D
 @onready var _tilemap: TileMapLayer = %tilemap
 
 @onready var _start: Marker2D = %start
@@ -14,6 +15,7 @@ var _astar_grid = AStarGrid2D.new()
 
 func _ready() -> void:
 	var _rect: Rect2 = Rect2i()
+	#audio_listener_2d.make_current()
 	_rect.position = Vector2(_start.position)
 	_rect.end = Vector2(_end.position)
 	_astar_grid.region = _rect
@@ -40,6 +42,8 @@ func get_shortest_path(_start_point: Vector2, _finish_point: Vector2) -> PackedV
 	#for i in _path_ids:
 		#_tilemap.set_cell(i, 0, Vector2i(22, 2))
 	return _path_points
+	
+
 
 
 func _on_r_area_2d_body_entered(body: Node2D) -> void:
@@ -52,3 +56,4 @@ func _on_l_area_2d_2_body_entered(body: Node2D) -> void:
 	if body == _pacman:
 		_pacman.global_position = Vector2(400, 24)
 		camera.global_position = Vector2(400, 24)
+	

@@ -3,7 +3,8 @@ class_name Player
 
 
 #audio
-@onready var walk_sfx: AudioStreamPlayer2D = %walk_sfx
+@onready var walk_sfx: AudioStreamPlayer = $sfx/walk_sfx
+
 var step_sfx: bool = true
 
 #raycast

@@ -111,15 +111,6 @@ frame_progress = 0.94351405
 centered = false
 offset = Vector2(-17.94, -18.5)
 
-[node name="camera" type="Camera2D" parent="animated_sprite"]
-position = Vector2(-1, 8)
-zoom = Vector2(10, 10)
-limit_left = -467
-limit_top = -444
-limit_right = 467
-limit_bottom = 532
-position_smoothing_enabled = true
-
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xv0j0")
 
@@ -172,18 +163,19 @@ position = Vector2(6, -4)
 texture = SubResource("GradientTexture2D_kypjo")
 
 [node name="light_occluder" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2(1.865, 0)
 occluder = SubResource("OccluderPolygon2D_abmb4")
 
 [node name="sfx" type="Node" parent="."]
 
-[node name="walk_sfx" type="AudioStreamPlayer2D" parent="sfx"]
-unique_name_in_owner = true
+[node name="walk_sfx" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("3_kypjo")
 pitch_scale = 1.7
 bus = &"player-sfx"
 
 [node name="area" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 512
 
