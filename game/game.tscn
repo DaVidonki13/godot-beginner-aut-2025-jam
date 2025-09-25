@@ -885,7 +885,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAAAAAAAIAAEAAAAAAAEAAAAIAAI
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("4_l8g03")]
-position = Vector2(-9, -8)
+position = Vector2(-312, -8)
 
 [node name="Camera2D" type="Camera2D" parent="pacman"]
 zoom = Vector2(10, 10)

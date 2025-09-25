@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://dwjrla3c7mc5e"]
+[gd_scene load_steps=34 format=3 uid="uid://dwjrla3c7mc5e"]
 
 [ext_resource type="Script" uid="uid://dxdp4wdo31ui" path="res://key/keys.gd" id="1_o285j"]
 [ext_resource type="AudioStream" uid="uid://bbb3dll8r55rk" path="res://key/sfx/llaveskeys-338166.mp3" id="3_o285j"]
 [ext_resource type="Texture2D" uid="uid://fbor7112dgye" path="res://key/sprites/key_32x32_24f.png" id="4_6rwyj"]
 [ext_resource type="AudioStream" uid="uid://bjvy2bkkhp8dc" path="res://key/sfx/llaves_3keys-3-338165.mp3" id="4_tn77x"]
 [ext_resource type="AudioStream" uid="uid://40smfk7ff5le" path="res://key/sfx/llaves_5keys-5-338162.mp3" id="5_tt28t"]
+[ext_resource type="AudioStream" uid="uid://ds0y7ncp6iuf3" path="res://key/sfx/pickupkey.wav" id="6_tn77x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i86l5"]
 size = Vector2(16, 16)
@@ -185,6 +186,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn77x"]
+size = Vector2(15, 16)
+
 [node name="keys" type="Node2D"]
 script = ExtResource("1_o285j")
 
@@ -225,9 +229,22 @@ unique_name_in_owner = true
 stream = ExtResource("5_tt28t")
 bus = &"sfx"
 
+[node name="pickup_sound" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("6_tn77x")
+bus = &"sfx"
+
 [node name="countdown_sfx" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.25, 0.75)
+shape = SubResource("RectangleShape2D_tn77x")
+
 [connection signal="timeout" from="countdown_sfx" to="." method="_on_countdown_sfx_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
