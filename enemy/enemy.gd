@@ -2,14 +2,19 @@ extends CharacterBody2D
 class_name Enemy
 
 #TODO aggiungere jumpscare : davide
-#TODO aggiungere rumore nemico vicino: davide
 
+#AUDIO. NON TOCCARE
+@onready var horror_sfx: AudioStreamPlayer2D = $sfx/horror_sfx
+@onready var volume
+@onready var pan
+@export var max_distance: float = 100.0
+@export var min_distance: float = 50.0
 
 @export var _enemy_type: int
 
 #main
 @onready var _game: Game = $".."
-@onready var _pacman: Player = %pacman
+@onready var _pacman: Player = $"../pacman"
 
 #raycast
 @onready var _raycast_up: RayCast2D = %raycast_up
@@ -44,6 +49,7 @@ var _seed: int = 0
 func _ready() -> void:
 	_x = position.x
 	_y = position.y
+	horror_sfx.play()
 
 
 func _process(_delta: float) -> void:
@@ -84,7 +90,16 @@ func _process(_delta: float) -> void:
 	look_at(global_position + _direction)
 	
 	move_and_slide()
-
+	
+	#AUDIO. NON TOCCARE
+	var rel_pos = global_position - _pacman.global_position
+	var dist = rel_pos.length()
+	
+	volume = clamp(1.0 - (dist - min_distance) / (max_distance - min_distance), 0.0, 1.0)
+	pan = Vector2(global_position.x, _pacman.global_position.y)
+	
+	horror_sfx.volume_db = linear_to_db(volume)
+	horror_sfx.position = pan
 
 func _find_target_position() -> Vector2:
 	if (position - _pacman.position).length() < 120: #if near pacman chase pacman

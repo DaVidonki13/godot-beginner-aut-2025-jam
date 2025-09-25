@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bned0gfsf6ht8"]
+[gd_scene load_steps=6 format=3 uid="uid://bned0gfsf6ht8"]
 
 [ext_resource type="Script" uid="uid://b8cda7pqsj122" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="Texture2D" uid="uid://budytw2byvw47" path="res://enemy/sprites/64x64_faces_011.png" id="2_ofsxj"]
+[ext_resource type="AudioStream" uid="uid://btvr2daht07on" path="res://enemy/sfx/horror-premonition-403175.mp3" id="3_ppra6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv0j0"]
 size = Vector2(16, 16)
@@ -71,3 +72,9 @@ collision_mask = 4864
 [node name="light_occluder" type="LightOccluder2D" parent="."]
 position = Vector2(1.865, 0)
 occluder = SubResource("OccluderPolygon2D_abmb4")
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="horror_sfx" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("3_ppra6")
+bus = &"sfx"

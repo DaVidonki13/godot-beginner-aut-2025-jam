@@ -9,6 +9,7 @@ extends Node2D
 @onready var sfx_2: AudioStreamPlayer2D = %sfx_2
 @onready var sfx_3: AudioStreamPlayer2D = %sfx_3
 @onready var player: CharacterBody2D = $"../pacman"
+@onready var pickup_sfx: AudioStreamPlayer = $sfx/pickup_sound
 
 @export var max_distance: float = 600.0
 @export var min_distance: float = 50.0
@@ -23,15 +24,21 @@ func _process(_delta: float) -> void:
 	var dist = rel_pos.length()
 	
 	volume = clamp(1.0 - (dist - min_distance) / (max_distance - min_distance), 0.0, 1.0)
-	position = Vector2(global_position.x, player.global_position.y)
+	pan = Vector2(global_position.x, player.global_position.y)
 	
 	print(countdown_sfx.time_left)
 
-
+#AUDIO. NON TOCCARE
 func _on_countdown_sfx_timeout() -> void:
 	var numr = (randi() % 3)
 	
 	sfx_array[numr].volume_db = linear_to_db(volume)
-	sfx_array[numr].position = position
+	sfx_array[numr].position = pan
 	sfx_array[numr].play()
+	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body == player:
+		pickup_sfx.play()
 	
