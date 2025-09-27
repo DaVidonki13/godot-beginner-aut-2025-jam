@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://bcns26lxifh7s"]
+[gd_scene load_steps=13 format=4 uid="uid://bcns26lxifh7s"]
 
 [ext_resource type="Script" uid="uid://bkn2vdmlb0j0b" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="Texture2D" uid="uid://8b20aricsm6o" path="res://map/background/brown_back.png" id="2_u5opy"]
 [ext_resource type="Texture2D" uid="uid://crao745tf6o4p" path="res://map/Enviroment.png" id="3_y36n6"]
 [ext_resource type="PackedScene" uid="uid://04o60qfqg0y7" path="res://player/pacman.tscn" id="4_l8g03"]
-[ext_resource type="PackedScene" uid="uid://dwjrla3c7mc5e" path="res://key/keys.tscn" id="6_3vho3"]
+[ext_resource type="Texture2D" uid="uid://budytw2byvw47" path="res://enemy/sprites/64x64_faces_011.png" id="5_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://bned0gfsf6ht8" path="res://enemy/enemy.tscn" id="6_dakft"]
+[ext_resource type="AudioStream" uid="uid://b7q8clu3rbhxt" path="res://game/sfx/jumpscare-94984.mp3" id="8_3vho3"]
+[ext_resource type="AudioStream" uid="uid://4dwki154bym" path="res://game/sfx/ascending-jumpscare-102061.mp3" id="9_l8g03"]
+[ext_resource type="AudioStream" uid="uid://chm1lidr6y03m" path="res://game/sfx/squeaky-jumpscare-2-102254.mp3" id="10_vsp63"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("3_y36n6")
@@ -885,7 +889,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAAAAAAAIAAEAAAAAAAEAAAAIAAI
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="pacman" parent="." instance=ExtResource("4_l8g03")]
-position = Vector2(-312, -8)
+position = Vector2(-84, -9)
 
 [node name="Camera2D" type="Camera2D" parent="pacman"]
 zoom = Vector2(10, 10)
@@ -920,10 +924,39 @@ position = Vector2(-472, -440)
 unique_name_in_owner = true
 position = Vector2(474, 507)
 
-[node name="sfx" type="Node" parent="."]
+[node name="enemy" parent="." instance=ExtResource("6_dakft")]
+position = Vector2(-2, -8)
 
-[node name="keys" parent="." instance=ExtResource("6_3vho3")]
-position = Vector2(-312, 23)
+[node name="jumpcare" type="Node" parent="."]
+process_mode = 3
 
+[node name="jumpscare-background" type="ColorRect" parent="jumpcare"]
+visible = false
+offset_left = -1093.0
+offset_top = -582.0
+offset_right = 1084.0
+offset_bottom = 599.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="jumpcare"]
+visible = false
+position = Vector2(-85, -9)
+texture = ExtResource("5_dxrkv")
+
+[node name="sfx" type="Node" parent="jumpcare"]
+
+[node name="Jumpscare94984" type="AudioStreamPlayer" parent="jumpcare"]
+stream = ExtResource("8_3vho3")
+bus = &"jumpscare"
+
+[node name="SqueakyJumpscare2102254" type="AudioStreamPlayer" parent="jumpcare"]
+stream = ExtResource("10_vsp63")
+bus = &"jumpscare"
+
+[node name="AscendingJumpscare102061" type="AudioStreamPlayer" parent="jumpcare"]
+stream = ExtResource("9_l8g03")
+bus = &"jumpscare"
+
+[connection signal="jumpsscare" from="pacman" to="." method="_on_pacman_jumpsscare"]
 [connection signal="body_entered" from="l_area2d2" to="." method="_on_l_area_2d_2_body_entered"]
 [connection signal="body_entered" from="r_area2d" to="." method="_on_r_area_2d_body_entered"]

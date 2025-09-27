@@ -120,6 +120,6 @@ func _find_target_position() -> Vector2:
 					_seed += 1
 				seed(_seed)
 				return Vector2(randf_range(-440, 440), randf_range(-408.0, 408.0))
-			_:
+			_: #FIXME PROBLEMI DA CORREGGERE: CAF
 				push_error(_enemy_type, " not a valid enemy type")
 				return Vector2.ZERO

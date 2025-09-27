@@ -12,6 +12,15 @@ class_name Game
 
 var _astar_grid = AStarGrid2D.new()
 
+#jumpscare
+@onready var jumpcare: Node = $jumpcare
+@onready var jumpscare_sprite: Sprite2D = $jumpcare/Sprite2D
+@onready var jumpscare_background: ColorRect = $"jumpcare/jumpscare-background"
+@onready var jumpscare_1: AudioStreamPlayer = $jumpcare/Jumpscare94984
+@onready var jumpscare_2: AudioStreamPlayer = $jumpcare/SqueakyJumpscare2102254
+@onready var jumpscare_3: AudioStreamPlayer = $jumpcare/AscendingJumpscare102061
+@onready var jumpscare_array = [jumpscare_1, jumpscare_2, jumpscare_3]
+
 
 func _ready() -> void:
 	var _rect: Rect2 = Rect2i()
@@ -24,6 +33,9 @@ func _ready() -> void:
 	_astar_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	_astar_grid.update()
+	
+	jumpscare_sprite.visible = false
+	jumpscare_background.visible = false
 	
 	for i in _tilemap.get_used_cells():
 		var _tile_data = _tilemap.get_cell_tile_data(i)
@@ -57,3 +69,15 @@ func _on_l_area_2d_2_body_entered(body: Node2D) -> void:
 		_pacman.global_position = Vector2(400, 24)
 		camera.global_position = Vector2(400, 24)
 	
+
+
+func _on_pacman_jumpsscare() -> void:
+	var numr = (randi() % 3)
+	print(numr)
+	get_tree().paused = true
+	
+	jumpscare_sprite.global_position = camera.global_position
+	jumpscare_background.visible = true
+	jumpscare_sprite.visible = true
+	
+	jumpscare_array[numr].play()

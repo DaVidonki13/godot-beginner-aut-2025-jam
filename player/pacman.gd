@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+signal jumpsscare
 
 #audio
 @onready var walk_sfx: AudioStreamPlayer = $sfx/walk_sfx
@@ -138,4 +139,5 @@ func get_front_direction() -> Vector2:
 
 func _on_area_body_entered(_body: Node2D) -> void:
 	if _body is Enemy:
-		print("PACMAN DIED!")
+		print("pacman died")
+		jumpsscare.emit()
