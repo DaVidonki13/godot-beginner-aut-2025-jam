@@ -16,7 +16,7 @@ extends Node2D
 
 @onready var sfx_array = [sfx_1, sfx_2, sfx_3]
 
-var random: RandomNumberGenerator = RandomNumberGenerator.new()
+ #var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 func _process(_delta: float) -> void:
